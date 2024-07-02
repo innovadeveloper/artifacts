@@ -1,0 +1,22 @@
+server:
+  port: 0
+  servlet:
+    context-path: /context
+spring:
+  application:
+    name: dbagent-api
+  credentials:
+    config:
+      password: ftp_client
+      username: ftp_client
+      hostname: serverdevops.abexa.pe
+      port: 1003
+      connection-timeout: 5000
+  transmitter:
+    config:
+      shared-directory: /home/dbagent/Documents/DockerProjects/samba-dockerproject/shared
+      username-db: beex-payment-webapi
+      password-db: beex-payment-webapi
+      hostname-db: 192.168.1.11
+      port-db: 1433
+      file-size: 100M
