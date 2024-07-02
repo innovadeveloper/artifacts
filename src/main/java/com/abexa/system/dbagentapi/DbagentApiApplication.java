@@ -60,34 +60,6 @@ public class DbagentApiApplication implements ApplicationRunner {
                     System.exit(Constants.FATAL_ERROR);
                 }
         );
-//        ftpService.connect();
-//        ftpService.listAllFiles();
-//        ftpService.saveFiles(Arrays.asList("/Users/kenny/Desktop/PC_04.zip"))
-//                .subscribeOn(Schedulers.io())
-//                .subscribe(new SingleObserver<List<Boolean>>() {
-//                    @Override
-//                    public void onSubscribe(@NonNull Disposable disposable) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onSuccess(@NonNull List<Boolean> successList) {
-//                        boolean allSuccess = successList.stream().allMatch(result -> result);
-//                        log.info("allSucess => " + allSuccess);
-//                        if(allSuccess)
-//                            System.exit(Constants.RESULT_OK);
-//                        else
-//                            System.exit(Constants.FATAL_ERROR);
-//                    }
-//
-//                    @Override
-//                    public void onError(@NonNull Throwable throwable) {
-//                        System.exit(Constants.FATAL_ERROR);
-//                    }
-//                });
-
-
-
     }
 
 }
