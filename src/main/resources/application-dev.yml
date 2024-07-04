@@ -21,3 +21,11 @@ spring:
       port-db: 1433
       file-size: 100M
       database-name: AGPS_Pruebas
+  receiver:
+    config:
+      shared-directory: /home/jenkins/DockerProjects/ftp-docker-project/data
+      username-db: yorklin
+      password-db: 123
+      hostname-db: 192.168.1.2
+      port-db: 1434
+      database-name: AGPS_Pruebas

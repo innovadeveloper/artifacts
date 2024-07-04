@@ -13,10 +13,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileFilter;
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
+import java.util.zip.DeflaterOutputStream;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,41 +42,15 @@ public class DbagentApiApplication implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
 //        String dbName = "AGPS_Pruebas";
-        String dbName = transmitterConfigDTO.getDatabaseName();
+//        String dbName = transmitterConfigDTO.getDatabaseName();
 //        log.info("\n\n\n\n\ndbName => " + dbName + "\n\n\n\n");
-        transmitterFlow.clean(dbName);
-        transmitterFlow.dump(dbName);
-        transmitterFlow.split(dbName);
-        transmitterFlow.transmit(dbName);
+//        transmitterFlow.clean(dbName);
+//        transmitterFlow.dump(dbName);
+//        transmitterFlow.split(dbName);
+//        transmitterFlow.createManifest(dbName);
+//        transmitterFlow.transmit(dbName);
 
 //        System.exit(Constants.RESULT_OK);
-//        File[] sharedPublicFiles = new File("/Users/kenny/Desktop/").listFiles(new FileFilter() {
-//            @Override
-//            public boolean accept(File pathname) {
-//                String name  = pathname.getName();
-//                return name.startsWith("Captura");
-//            }
-//        });
-//        List<String> fileNames = Arrays.stream(sharedPublicFiles).map(file -> file.getPath()).toList();
         log.info("__");
-
-//        ftpFactory.saveFilesConcurrently(Arrays.asList("/Users/kenny/Desktop/PC_04.zip", "/Users/kenny/Desktop/RAP_EJEMPLO_1.pdf", "/Users/kenny/Desktop/firma.jpeg"))
-//                .subscribe(
-//                allSuccess -> {
-//                    if (allSuccess) {
-//                        log.info("Todos los archivos fueron subidos exitosamente.");
-//                        System.exit(Constants.RESULT_OK);
-//                    } else {
-//                        log.info("Algunos archivos no se subieron correctamente.");
-//                        System.exit(Constants.FATAL_ERROR);
-//                    }
-//                },
-//                error -> {
-//                    log.error("Error al subir archivos: " + error.getMessage());
-//
-//                    System.exit(Constants.FATAL_ERROR);
-//                }
-//        );
     }
-
 }

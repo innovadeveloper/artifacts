@@ -24,9 +24,10 @@ public class FTPFactory {
     /**
      * guarda ficheros concurrentemente
      * @param filePaths List<String>
+     * @param manifestFilePath String
      * @return Observable
      */
-    public Observable<Boolean> saveFilesConcurrently(List<String> filePaths) {
+    public Observable<Boolean> saveFilesConcurrently(List<String> filePaths, String manifestFilePath) {
         List<Observable<Boolean>> observables = filePaths.stream()
                 .map(filePath -> {
                     FTPService ftpService = create();
@@ -39,6 +40,14 @@ public class FTPFactory {
                             return false;
                     }
                     return true;
+                }).flatMap(allSuccess -> {
+                    if (allSuccess) {
+                        FTPService ftpService = create();
+                        ftpService.connect();
+                        return ftpService.saveFile(manifestFilePath).toObservable();
+                    } else {
+                        return Observable.just(false);
+                    }
                 });
     }
 
