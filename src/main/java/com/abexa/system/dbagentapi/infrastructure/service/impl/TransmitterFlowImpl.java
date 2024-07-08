@@ -41,7 +41,7 @@ public class TransmitterFlowImpl implements TransmitterFlow {
 
     @Override
     public void dump(String dbName) {
-        String command = "sqlcmd -S " + transmitterConfigDTO.getHostnameDb() + "," + transmitterConfigDTO.getPortDb() + " -U " + transmitterConfigDTO.getUsernameDb() + " -P " + transmitterConfigDTO.getPasswordDb() + " -Q \"BACKUP DATABASE " + dbName + " TO DISK = '" + dbName + Constants.BAK_EXTENSION + "' WITH COMPRESSION\" -C";
+        String command = "sqlcmd -S " + transmitterConfigDTO.getHostnameDb() + "," + transmitterConfigDTO.getPortDb() + " -U " + transmitterConfigDTO.getUsernameDb() + " -P " + transmitterConfigDTO.getPasswordDb() + " -Q \"BACKUP DATABASE " + dbName + " TO DISK = '" + dbName + Constants.BAK_EXTENSION + "' WITH INIT, COMPRESSION\" -C";
         shellService.executeCommand(command);
     }
 

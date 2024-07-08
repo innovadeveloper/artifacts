@@ -42,15 +42,15 @@ public class DbagentApiApplication implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
 //        String dbName = "AGPS_Pruebas";
-//        String dbName = transmitterConfigDTO.getDatabaseName();
-//        log.info("\n\n\n\n\ndbName => " + dbName + "\n\n\n\n");
-//        transmitterFlow.clean(dbName);
-//        transmitterFlow.dump(dbName);
-//        transmitterFlow.split(dbName);
-//        transmitterFlow.createManifest(dbName);
-//        transmitterFlow.transmit(dbName);
+        String dbName = transmitterConfigDTO.getDatabaseName();
+        log.info("\n\n\n\n\ndbName => " + dbName + "\n\n\n\n");
+        transmitterFlow.clean(dbName);
+        transmitterFlow.dump(dbName);
+        transmitterFlow.split(dbName);
+        transmitterFlow.createManifest(dbName);
+        transmitterFlow.transmit(dbName);
 
 //        System.exit(Constants.RESULT_OK);
-        log.info("__");
+        log.info("success execution..");
     }
 }
