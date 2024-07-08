@@ -1,5 +1,7 @@
 package com.abexa.system.dbagentapi.infrastructure.service;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 public interface ShellService {
-    int executeCommand(String command);
+    Pair<Integer, String> executeCommand(String command);
 }

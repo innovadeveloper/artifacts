@@ -3,6 +3,7 @@ package com.abexa.system.dbagentapi.infrastructure.service.impl;
 import com.abexa.system.dbagentapi.domain.constants.Constants;
 import com.abexa.system.dbagentapi.infrastructure.service.ShellService;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -15,7 +16,8 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class ShellServiceImpl implements ShellService {
     @Override
-    public int executeCommand(String command) {
+    public Pair<Integer, String> executeCommand(String command) {
+        Pair<Integer, String> result = Pair.of(Constants.FATAL_ERROR, "");
         ProcessBuilder processBuilder = new ProcessBuilder();
         processBuilder.command("bash", "-c", command);
 
@@ -28,11 +30,13 @@ public class ShellServiceImpl implements ShellService {
                 output.append(line).append("\n");
             }
             int exitCode = process.waitFor();
-            log.info("Output: " + output + "\nExit code: " + exitCode);
-            return exitCode;
+//            log.info("Output: " + output + "\nExit code: " + exitCode);
+            result = Pair.of(exitCode, output.toString());
+            return result;
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
-            return Constants.FATAL_ERROR;
+            result = Pair.of(Constants.FATAL_ERROR, e.getMessage());
+            return result;
         }
     }
 }

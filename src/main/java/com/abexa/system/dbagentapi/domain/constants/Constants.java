@@ -7,5 +7,7 @@ public class Constants {
     public final static String BAK_EXTENSION = ".bak";
     public final static String MANIFEST_EXTENSION = "_manifest";
     public final static String PART_EXTENSION = "_part";
+    public final static String TRANSMITTER = "transmitter";
+    public final static String RECEIVER = "receiver";
 
 }

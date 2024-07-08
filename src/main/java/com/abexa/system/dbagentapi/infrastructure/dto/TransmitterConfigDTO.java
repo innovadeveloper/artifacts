@@ -15,5 +15,6 @@ public class TransmitterConfigDTO {
     private String hostnameDb;
     private String portDb;
     private String fileSize;
+    private int fileLimit;
     private String databaseName;
 }

@@ -20,12 +20,16 @@ spring:
       hostname-db: 192.168.1.11
       port-db: 1433
       file-size: 100M
+      file-limit: 100
       database-name: AGPS_Pruebas
   receiver:
     config:
-      shared-directory: /home/jenkins/DockerProjects/ftp-docker-project/data
+      shared-directory: /home/serverdev/Documents/DockerProjects/ftp-docker-project/data
+      mssql-external-directory: /mnt/virtual_machines/SQL
+      mssql-internal-directory: /var/opt/mssql/data
       username-db: yorklin
       password-db: 123
       hostname-db: 192.168.1.2
       port-db: 1434
       database-name: AGPS_Pruebas
+  flow-mode: 'transmitter'  # 'receiver'

@@ -10,6 +10,8 @@ import lombok.Data;
 @Data
 public class ReceiverConfigDTO {
     private String sharedDirectory;
+    private String mssqlInternalDirectory;
+    private String mssqlExternalDirectory;
     private String usernameDb;
     private String passwordDb;
     private String hostnameDb;
