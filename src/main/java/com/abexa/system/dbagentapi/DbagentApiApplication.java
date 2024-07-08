@@ -68,6 +68,7 @@ public class DbagentApiApplication implements ApplicationRunner {
             transmitterFlow.transmit(dbName);
         }else if(flowMode.toLowerCase().equals(Constants.RECEIVER.toLowerCase())){
             String dbName = receiverConfigDTO.getDatabaseName();
+            receiverFlow.scan(dbName);
             receiverFlow.merge(dbName);
             receiverFlow.move(dbName);
             List<DatabaseFileDTO> databaseFileList = receiverFlow.verify(dbName);

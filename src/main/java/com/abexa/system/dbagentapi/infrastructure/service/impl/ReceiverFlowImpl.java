@@ -10,9 +10,12 @@ import com.abexa.system.dbagentapi.infrastructure.service.ShellService;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import lombok.RequiredArgsConstructor;
@@ -28,7 +31,17 @@ public class ReceiverFlowImpl implements ReceiverFlow {
     private final ShellService shellService;
 
     @Override
+    public void scan(String dbName) {
+       List<String> fileNamesList = this.buildFileNamesList(dbName, false);
+       if(fileNamesList.isEmpty()){
+           log.error("No se encontraron partes del archivo " + dbName + Constants.PART_EXTENSION + " en el directorio " + receiverConfigDTO.getSharedDirectory());
+           System.exit(Constants.FATAL_ERROR);
+       }
+    }
+
+    @Override
     public void merge(String dbName) {
+        // cat AGPS_SantaCruz_part* > AGPS_SantaCruz_united.bak
         String command = "cat " + Paths.get(receiverConfigDTO.getSharedDirectory(), this.buildPartDbNameString(dbName) + "*") + " > " + Paths.get(receiverConfigDTO.getSharedDirectory(), (dbName + Constants.BAK_EXTENSION));
         shellService.executeCommand(command);
     }
@@ -103,4 +116,14 @@ public class ReceiverFlowImpl implements ReceiverFlow {
         return (dbName + Constants.PART_EXTENSION);
     }
 
+    /**
+     * construye
+     * @param dbName String
+     * @return {@link List<String>}
+     */
+    private List<String> buildFileNamesList(String dbName, boolean isOnlyName){
+        File[] sharedPublicFiles = new File(receiverConfigDTO.getSharedDirectory())
+                .listFiles(pathname -> pathname.getName().startsWith(dbName + Constants.PART_EXTENSION));
+        return Arrays.stream(Objects.requireNonNull(sharedPublicFiles)).map((isOnlyName) ? File::getName : File::getPath).toList();
+    }
 }

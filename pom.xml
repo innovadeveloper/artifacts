@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.abexa.system</groupId>
 	<artifactId>dbagent-api</artifactId>
-	<version>7.0.0</version>
+	<version>8.0.0</version>
 	<name>dbagent-api</name>
 	<description>db agent api</description>
 	<properties>

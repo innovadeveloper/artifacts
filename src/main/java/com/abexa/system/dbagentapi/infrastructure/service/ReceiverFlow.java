@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ReceiverFlow {
 
-//    void scan();
+    void scan(String dbName);
     void merge(String dbName);
     void move(String dbName);
     List<DatabaseFileDTO> verify(String dbName);
