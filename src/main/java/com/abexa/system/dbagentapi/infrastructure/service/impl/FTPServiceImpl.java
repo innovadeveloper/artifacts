@@ -58,6 +58,8 @@ public class FTPServiceImpl implements FTPService {
     @SneakyThrows
     @Override
     public Single<Boolean> saveFile(String path) {
+        ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+        log.info("set file type: FTP.BINARY_FILE_TYPE");
         return Single.create(singleEmitter -> {
             try{
                 File file = new File(path);

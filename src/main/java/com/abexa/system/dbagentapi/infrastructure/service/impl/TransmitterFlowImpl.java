@@ -47,7 +47,7 @@ public class TransmitterFlowImpl implements TransmitterFlow {
 
     @Override
     public void split(String dbName) {
-        String splitCommand = "split -b " + transmitterConfigDTO.getFileSize() + " \""+ transmitterConfigDTO.getSharedDirectory() + "/" + (dbName + Constants.BAK_EXTENSION) + "\" " + ( transmitterConfigDTO.getSharedDirectory() + "/" + dbName  + Constants.PART_EXTENSION);
+        String splitCommand = "split -b " + transmitterConfigDTO.getFileSize() + " -d \""+ transmitterConfigDTO.getSharedDirectory() + "/" + (dbName + Constants.BAK_EXTENSION) + "\" " + ( transmitterConfigDTO.getSharedDirectory() + "/" + dbName  + Constants.PART_EXTENSION);
         shellService.executeCommand(splitCommand);
     }
 
