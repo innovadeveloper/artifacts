@@ -31,5 +31,5 @@ spring:
       password-db: 123
       hostname-db: 192.168.1.2
       port-db: 1434
-      database-name: AGPS_Pruebas
-  flow-mode: 'transmitter'  # 'receiver'
+      database-name: BdGestionActividad
+  flow-mode: 'receiver'  # 'receiver', 'transmitter'

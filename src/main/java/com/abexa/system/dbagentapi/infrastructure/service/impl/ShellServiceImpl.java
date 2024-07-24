@@ -20,6 +20,7 @@ public class ShellServiceImpl implements ShellService {
         Pair<Integer, String> result = Pair.of(Constants.FATAL_ERROR, "");
         ProcessBuilder processBuilder = new ProcessBuilder();
         processBuilder.command("bash", "-c", command);
+        log.warn(command);
 
         try {
             Process process = processBuilder.start();
@@ -27,13 +28,16 @@ public class ShellServiceImpl implements ShellService {
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line;
             while ((line = reader.readLine()) != null) {
+                log.warn(line);
                 output.append(line).append("\n");
             }
             int exitCode = process.waitFor();
 //            log.info("Output: " + output + "\nExit code: " + exitCode);
             result = Pair.of(exitCode, output.toString());
+            log.warn("exitCode: " + exitCode + " output: " + output);
             return result;
         } catch (IOException | InterruptedException e) {
+            log.error(e.getMessage());
             e.printStackTrace();
             result = Pair.of(Constants.FATAL_ERROR, e.getMessage());
             return result;
